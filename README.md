@@ -1,73 +1,29 @@
-# React + TypeScript + Vite
+# <img src="src/assets/logos/logo_colored.svg" width="25px"/> Welcome to Solomon
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#### _Solomon is a Christian resource aggregator where trustworthy, accessible, and reliable resources are gathered together in one convenient, accessible platform._
 
-Currently, two official plugins are available:
+## A Background
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+There are many phenomenal resources for Christians looking to answer their theological questions, deepen their faith and knowledge of Scripture, and defend their beliefs.
 
-## React Compiler
+However, discovering such resources can be a chore. There are a few problems with the current discovery process:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+#### 1. Reliance on Word-of-Mouth
 
-## Expanding the ESLint configuration
+- Many Christians rely on mentors or trustworthy friends/family to find resources. This process can be inefficient, while access to such reliable peers may not be an option for others.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+#### 2. Difficult to Search
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Oftentimes, finding good resources for a particular topic requires knowing exactly how to query your search.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+#### 3. Trustworthiness
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- It is difficult to know if a resource is trustworthy by a simple search. Oftentimes, deeper research is needed to verify and validate resources.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## The Solution
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+With all this, I am designing and developing Solomon, which is an aggregator that aims to solve the pain-points listed above. Users are able to sign in and see personalized recommendations for resources, while guests can use the site to discover new resources.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Technologies
+
+This project is being developed primarily with TypeScript and React, using Emotion for styled Components and Vite as the preferred build tool.

@@ -4,7 +4,7 @@
 export type SidebarLink = {
   title: string;
   icon: string;
-  items: { link?: string; text: string }[]; // TODO: This can potentially be simplified into a `ResourceLink`
+  items: ResourceLink[];
 };
 
 /**
@@ -48,6 +48,17 @@ export type ResourceIcon = {
 export type ResourceLink = {
   platform: string;
   link: string;
+  displayText: string;
+  icon?: string;
+  priority?: boolean;
+};
+
+type Content = {
+  id: string;
+  title: string;
+  description?: string;
+  thumbnail: string;
+  badge: string; // TODO: Maybe make badge type an enum or interface
 };
 
 /**
@@ -60,6 +71,7 @@ export type ResourceInfo = {
   type: ResourceType;
   shortDescription: string;
   longDescription?: string;
+  recentContent?: Content[];
   color?: string;
   favorite: boolean;
   fullscreen?: boolean;

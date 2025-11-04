@@ -1,13 +1,15 @@
 import styled from "@emotion/styled";
 import * as Typography from "@libs/Typography";
-import logogram from "@assets/logogram.svg";
+import logogram from "@assets/logos/logogram.svg";
 import { sidebarData } from "@database/mockData";
 import NavigationBar from "@components/NavigationBar";
 import Sidebar from "@components/Sidebar";
 
 import { Card } from "@components/Cards";
-import type { DashboardData } from "@libs/Types";
+import type { DashboardData, ResourceInfo } from "@libs/Types";
 import * as theme from "@libs/global";
+import React from "react";
+import ResourceModal from "@components/modals/ResourceModal";
 
 const Background = styled.div`
   background-color: black;
@@ -84,6 +86,8 @@ const CardRow = styled.div`
  * @returns Desktop Dashboard
  */
 const Dashboard: React.FC<{ data: DashboardData }> = ({ data }) => {
+  const [selectedResource, setSelectedResource] =
+    React.useState<ResourceInfo | null>(null);
   return (
     <Background>
       <NavigationBar highlighted="dashboard" />
@@ -120,20 +124,13 @@ const Dashboard: React.FC<{ data: DashboardData }> = ({ data }) => {
                 <CardRow id={row.id}>
                   {row.content.map(
                     (
-                      resource, // TODO: This needs to be more dynamic - only the cards can fit on the page should be displayed
+                      item, // TODO: This needs to be more dynamic - only the cards can fit on the page should be displayed
                       j
                     ) => (
                       <Card
-                        id={resource.id}
+                        resource={item}
                         key={j}
-                        name={resource.name}
-                        shortDescription={resource.shortDescription}
-                        color={resource.color}
-                        favorite={resource.favorite}
-                        type={resource.type}
-                        fullscreen={resource.fullscreen}
-                        dropdown={resource.dropdown}
-                        badges={resource.badges}
+                        setSelectedResource={setSelectedResource}
                       />
                     )
                   )}
@@ -151,6 +148,12 @@ const Dashboard: React.FC<{ data: DashboardData }> = ({ data }) => {
         draggable="false"
       />
       */}
+      {selectedResource !== null && (
+        <ResourceModal
+          visible={selectedResource !== null}
+          resource={selectedResource!}
+        />
+      )}
     </Background>
   );
 };

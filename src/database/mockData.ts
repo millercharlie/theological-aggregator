@@ -13,23 +13,28 @@ export const sidebarData: SidebarLink[] = [
     items: [
       {
         link: "https://youtu.be/8AoLYeFi2ms?si=Kl8RD2TAj-jeF11h",
-        text: "Young Earth v. Old Earth Creationism",
+        displayText: "Young Earth v. Old Earth Creationism",
+        platform: "YouTube",
       },
       {
         link: "",
-        text: "Did Jesus claim to be God in Mark 2?",
+        displayText: "Did Jesus claim to be God in Mark 2?",
+        platform: "YouTube",
       },
       {
         link: "",
-        text: "Noah's Flood: Local or Global?",
+        displayText: "Noah's Flood: Local or Global?",
+        platform: "YouTube",
       },
       {
         link: "",
-        text: "The Messianic Prophecies of Isaiah",
+        displayText: "The Messianic Prophecies of Isaiah",
+        platform: "Scholarly Article",
       },
       {
         link: "",
-        text: "Where was the Garden of Eden?",
+        displayText: "Where was the Garden of Eden?",
+        platform: "YouTube",
       },
     ],
   },
@@ -39,15 +44,18 @@ export const sidebarData: SidebarLink[] = [
     items: [
       {
         link: "https://www.gotquestions.org/",
-        text: "gotquestions.org",
+        displayText: "gotquestions.org",
+        platform: "Ministry",
       },
       {
         link: "https://biblethinker.org/",
-        text: "BibleThinker \u2013 Mike Winger",
+        displayText: "BibleThinker \u2013 Mike Winger",
+        platform: "Ministry",
       },
       {
         link: "",
-        text: "The Case for Christ \u2013 Lee Strobel",
+        displayText: "The Case for Christ \u2013 Lee Strobel",
+        platform: "Book",
       },
     ],
   },
@@ -57,7 +65,9 @@ export const sidebarData: SidebarLink[] = [
     items: [
       {
         link: "",
-        text: "“Do not be overcome by evil, but overcome evil with good” \u2013 Romans 12:21",
+        displayText:
+          "“Do not be overcome by evil, but overcome evil with good” \u2013 Romans 12:21",
+        platform: "",
       },
     ],
   },
@@ -67,23 +77,28 @@ export const sidebarData: SidebarLink[] = [
     items: [
       {
         link: "https://biblethinker.org/",
-        text: "BibleThinker \u2013 Mike Winger",
+        displayText: "BibleThinker \u2013 Mike Winger",
+        platform: "Ministry",
       },
       {
         link: "https://www.inspiringphilosophy.com/",
-        text: "InspiringPhilosophy \u2013 Michael Jones",
+        displayText: "InspiringPhilosophy \u2013 Michael Jones",
+        platform: "Ministry",
       },
       {
         link: "https://truthunites.org/",
-        text: "Truth Unites \u2013 Gavin Ortlund",
+        displayText: "Truth Unites \u2013 Gavin Ortlund",
+        platform: "Ministry",
       },
       {
         link: "https://www.cslewis.com/us/",
-        text: "C.S. Lewis",
+        displayText: "C.S. Lewis",
+        platform: "Scholar",
       },
       {
         link: "https://www.voddiebaucham.org/",
-        text: "VBM \u2013 Voddie Baucham",
+        displayText: "VBM \u2013 Voddie Baucham",
+        platform: "Ministry",
       },
     ],
   },
@@ -93,15 +108,18 @@ export const sidebarData: SidebarLink[] = [
     items: [
       {
         link: "",
-        text: "John 3:16",
+        displayText: "John 3:16",
+        platform: "Commentary",
       },
       {
         link: "",
-        text: "Acts of the Apostles 2",
+        displayText: "Acts of the Apostles 2",
+        platform: "Commentary",
       },
       {
         link: "https://truthunites.org/",
-        text: "Revelation 7:1-9",
+        displayText: "Revelation 7:1-9",
+        platform: "Commentary",
       },
     ],
   },
@@ -111,35 +129,43 @@ export const sidebarData: SidebarLink[] = [
     items: [
       {
         link: "",
-        text: "Baptist",
+        displayText: "Baptist",
+        platform: "",
       },
       {
         link: "",
-        text: "Presbyterian",
+        displayText: "Presbyterian",
+        platform: "",
       },
       {
         link: "",
-        text: "Methodist/Wesleyan",
+        displayText: "Methodist/Wesleyan",
+        platform: "",
       },
       {
         link: "",
-        text: "Non-Denominational",
+        displayText: "Non-Denominational",
+        platform: "",
       },
       {
         link: "",
-        text: "Roman Catholic",
+        displayText: "Roman Catholic",
+        platform: "",
       },
       {
         link: "",
-        text: "Eastern Orthodox",
+        displayText: "Eastern Orthodox",
+        platform: "",
       },
       {
         link: "",
-        text: "Anabaptist",
+        displayText: "Anabaptist",
+        platform: "",
       },
       {
         link: "",
-        text: "Anglican",
+        displayText: "Anglican",
+        platform: "",
       },
     ],
   },
@@ -235,14 +261,102 @@ const dashboardRowData2: DashboardRowData = {
       id: "gavin_ortlund",
       name: "Truth Unites with Gavin Ortlund",
       type: ResourceType.CREATOR,
-      shortDescription: "Promoting Gospel Assurance Through Theological Depth",
+      shortDescription:
+        "\u201CPromoting Gospel Assurance Through Theological Depth\u201D",
+      longDescription:
+        "Gavin Ortlund (PhD, Fuller Theological Seminary) is President of Truth Unites, Visiting Professor of Historical Theology at Phoenix Seminary, and Theologian-in-Residence at Immanuel Nashville. He is also an Evangelical theologian and content creator focusing on Christian doctrine, with a particular emphasis on the historical church.\n\nHis content includes refuting particular doctrines, such as the Papacy, responding to other theologions such as C.S. Lewis and Trent Horn, and defending Evangelical and Protestant beliefs, such as Sola Scriptura. All of his content is available for free on YouTube and other podcast sites, and he also sells books online",
       color: "#104B88",
       favorite: true,
       fullscreen: true,
-      dropdown: false,
+      dropdown: true,
+      recentContent: [
+        {
+          id: "go_v1",
+          title: "Did Jesus Descend into Hell?",
+          description: "...",
+          thumbnail: "go_v1.png",
+          badge: "question",
+        },
+        {
+          id: "go_v2",
+          title: "Should Christians use Profanity?",
+          description: "...",
+          thumbnail: "go_v2.png",
+          badge: "question",
+        },
+        {
+          id: "go_v3",
+          title: "Craig and Ortlund Clash on the Eucharist",
+          description: "...",
+          thumbnail: "go_v3.png",
+          badge: "theology",
+        },
+      ],
       badges: ["video", "podcast", "website", "apologetics", "theology"],
       mediaType: [],
-      links: [],
+      links: [
+        {
+          platform: "YouTube",
+          link: "https://www.youtube.com/@TruthUnites",
+          displayText: "youtube/truthunites",
+          icon: "youtube.svg",
+          priority: true,
+        },
+        {
+          platform: "Personal Website",
+          link: "https://truthunites.org",
+          icon: "website.svg",
+          displayText: "truthunites.org",
+        },
+        {
+          platform: "X",
+          link: "twitter.com/gavinortlund",
+          icon: "x.svg",
+          displayText: "x/gavinortlund",
+        },
+        {
+          platform: "Instagram",
+          link: "instagram.com/truth.unites",
+          icon: "instagram.svg",
+          displayText: "instagram/truth.unites",
+        },
+        {
+          platform: "Books", // TODO: This may need to be updated
+          link: "truthunites.org/mypublications",
+          icon: "closed_book.svg",
+          displayText: "truthunites.org/mypublications",
+        },
+        {
+          platform: "Spotify",
+          link: "",
+          icon: "spotify.svg",
+          displayText: "spotify/truth-unites",
+        },
+        {
+          platform: "Apple Podcasts",
+          link: "",
+          icon: "applepodcasts.svg",
+          displayText: "apple-podcasts/truth-unites",
+        },
+        {
+          platform: "Patreon",
+          link: "",
+          icon: "patreon.svg",
+          displayText: "patreon/truthunites",
+        },
+        {
+          platform: "Donate",
+          link: "",
+          icon: "youtube.svg",
+          displayText: "donations",
+        },
+        {
+          platform: "Facebook",
+          link: "facebook.com/TruthUnitesPage",
+          icon: "facebook.svg",
+          displayText: "facebook/TruthUnitesPage",
+        },
+      ],
     },
     {
       id: "john_lennox",

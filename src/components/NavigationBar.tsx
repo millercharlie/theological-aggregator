@@ -2,7 +2,7 @@ import SearchBar from "@components/SearchBar";
 import styled from "@emotion/styled";
 import * as Typography from "@libs/Typography";
 import accountPlaceholderIcon from "@assets/icons/account_placeholder.svg";
-import logo from "@assets/logo.svg";
+import logo from "@assets/logos/logo.svg";
 import { AccountCircle } from "@libs/Icons";
 import { Colors } from "@libs/global";
 

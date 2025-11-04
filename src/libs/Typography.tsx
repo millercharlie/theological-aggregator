@@ -2,9 +2,10 @@ import styled from "@emotion/styled";
 
 export const Title = styled.h1`
   font-family: "pinot-grigio-modern", sans-serif;
-  font-size: 32pt;
+  font-size: 50px;
   font-weight: 700;
   font-style: normal;
+  margin-top: 0;
 `;
 export const Subtitle = styled.h3`
   font-family: "apparat-semicond", sans-serif;
@@ -17,13 +18,12 @@ export const Subtitle = styled.h3`
   margin-bottom: 0;
 `;
 
-export const Description = styled.h2`
+export const Description = styled.h2<{ fontSize?: string; italic?: boolean }>`
   font-family: "fira-sans", "avenir", sans-serif;
-  font-size: 20pt;
+  font-size: ${({ fontSize }) => fontSize ?? `20pt`};
   font-weight: 500;
-  font-style: italic;
-  margin-top: 0;
-  margin-bottom: 0;
+  font-style: ${({ italic }) => (italic ? `italic` : `normal`)};
+  white-space: pre-line;
 `;
 
 export const RowHeading = styled.h2`
@@ -56,6 +56,9 @@ export const LargeParagraph = styled.p`
   font-weight: 400;
   font-style: normal;
 `;
+/**
+ * General paragraph text.
+ */
 export const Paragraph = styled.p`
   font-family: "avenir", sans-serif;
   font-size: 11pt;
@@ -63,6 +66,9 @@ export const Paragraph = styled.p`
   font-style: normal;
 `;
 
+/**
+ * Text that appears on all badges.
+ */
 export const BadgeText = styled.p`
   font-family: "fira-sans-condensed", sans-serif;
   font-size: 9pt;
@@ -71,6 +77,9 @@ export const BadgeText = styled.p`
   font-style: normal;
   margin-bottom: 14px; // tODO; This is horrifically janky
 `;
+/**
+ * Text style of every tooltip.
+ */
 export const TooltipText = styled.p`
   font-family: "fira-sans", "avenir", sans-serif;
   font-size: 11px;
@@ -78,4 +87,23 @@ export const TooltipText = styled.p`
   font-style: normal;
   margin-top: 0;
   margin-bottom: 0;
+`;
+
+export const DropdownTitle = styled.p`
+  font-family: "fira-sans", "avenir", sans-serif;
+  font-size: 12pt;
+  font-weight: normal;
+  font-variant: all-small-caps;
+  font-style: italic;
+`;
+/**
+ * Styles of every thumbnail (recent content) title.
+ */
+export const ThumbnailTitle = styled.p`
+  font-family: "apparat-semicond", "fira-sans", "avenir", sans-serif;
+  font-size: 11pt;
+  font-weight: 600; // TODO: This may not be semibold
+  font-style: normal;
+  font-variant: all-small-caps;
+  line-height: 1;
 `;
