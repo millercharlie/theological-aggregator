@@ -5,7 +5,9 @@ import { sidebarData } from "@database/mockData";
 import NavigationBar from "@components/NavigationBar";
 import Sidebar from "@components/Sidebar";
 
-import { MediumCard } from "@components/Cards";
+import { Card } from "@components/Cards";
+import type { DashboardData } from "@libs/Types";
+import * as theme from "@libs/global";
 
 const Background = styled.div`
   background-color: black;
@@ -44,6 +46,9 @@ const Heading = styled.div`
 const Content = styled.div`
   /* width: 70vw; */
 `;
+const MainContent = styled.div`
+  margin-top: 30px;
+`;
 // TODO: Color is not working here
 const Logogram = styled.img`
   width: 300px;
@@ -56,9 +61,29 @@ const TitleContainer = styled.div`
   gap: 0px;
 `;
 
+const Row = styled.div`
+  margin-bottom: 30px;
+`;
+const CardRow = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+
+  @media screen and (max-width: ${theme.breakpoints.md}px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: ${theme.breakpoints.sm}px) {
+    // TODO: Mobile-mode carousel
+  }
+`;
+
 // TODO: Background Gradient should NOT be an SVG - it should be dynamically calculated
-// Logged out Dashboard
-const Dashboard = () => {
+
+/**
+ * Desktop Dashboard when the user is logged out.
+ * @returns Desktop Dashboard
+ */
+const Dashboard: React.FC<{ data: DashboardData }> = ({ data }) => {
   return (
     <Background>
       <NavigationBar highlighted="dashboard" />
@@ -88,48 +113,34 @@ const Dashboard = () => {
               </Typography.LargeParagraph>
             </div>
           </Heading>
-          <div id="main-content">
-            {/* MAP WILL GO HERE! :D */}
-            <div id="apologetics-beginners">
-              {/* and another map here! */}
-              <MediumCard
-                id="william_lane_craig"
-                title="William Lane Craig"
-                description="Reformed Theologian focusing on apologetics, debates, and more"
-                backgroundColor="#00679A"
-                favorite={true}
-                icon="scholar.svg"
-                fullscreen={true}
-                dropdown={false}
-                badges={[
-                  {
-                    text: "Video",
-                    icon: "video.svg",
-                    backgroundColor: "#C42929",
-                    textColor: "#FFFFFF",
-                  },
-                  {
-                    text: "Website",
-                    icon: "website.svg",
-                    backgroundColor: "#2396E8",
-                    textColor: "#FFFFFF",
-                  },
-                  {
-                    text: "Apologetics",
-                    icon: "puzzle.svg",
-                    backgroundColor: "#295AC4",
-                    textColor: "#FFFFFF",
-                  },
-                  {
-                    text: "Theology",
-                    icon: "comment.svg",
-                    backgroundColor: "#6EBCB9",
-                    textColor: "#FFFFFF",
-                  },
-                ]}
-              />
-            </div>
-          </div>
+          <MainContent>
+            {data.rows.map((row, i) => (
+              <Row key={i}>
+                <Typography.RowHeading>{row.name}</Typography.RowHeading>
+                <CardRow id={row.id}>
+                  {row.content.map(
+                    (
+                      resource, // TODO: This needs to be more dynamic - only the cards can fit on the page should be displayed
+                      j
+                    ) => (
+                      <Card
+                        id={resource.id}
+                        key={j}
+                        name={resource.name}
+                        shortDescription={resource.shortDescription}
+                        color={resource.color}
+                        favorite={resource.favorite}
+                        type={resource.type}
+                        fullscreen={resource.fullscreen}
+                        dropdown={resource.dropdown}
+                        badges={resource.badges}
+                      />
+                    )
+                  )}
+                </CardRow>
+              </Row>
+            ))}
+          </MainContent>
         </Content>
         <Sidebar contents={sidebarData} />
       </ContentBackground>

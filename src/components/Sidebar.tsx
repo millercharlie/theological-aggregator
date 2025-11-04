@@ -1,5 +1,5 @@
 import * as Typography from "@libs/Typography";
-import squarrow from "@assets/squarrow.svg";
+import squarrow from "@assets/arrows/squarrow.svg";
 import { MediumIcon as Icon } from "@libs/Icons";
 import styled from "@emotion/styled";
 import type { SidebarLink } from "@libs/Types";

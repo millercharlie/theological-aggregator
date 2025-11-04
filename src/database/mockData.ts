@@ -1,4 +1,10 @@
-import type { SidebarLink } from "@libs/Types";
+import {
+  AccountStatus,
+  ResourceType,
+  type DashboardData,
+  type DashboardRowData,
+  type SidebarLink,
+} from "@libs/Types";
 
 export const sidebarData: SidebarLink[] = [
   {
@@ -138,3 +144,205 @@ export const sidebarData: SidebarLink[] = [
     ],
   },
 ];
+
+/**
+ * Mock data to be used on the dashboard for a single row of cards.
+ */
+const dashboardRowData1: DashboardRowData = {
+  id: "apologetics_beginners",
+  name: "Apologetics for Beginners",
+  content: [
+    {
+      id: "william_lane_craig",
+      name: "William Lane Craig",
+      type: ResourceType.SCHOLAR,
+      shortDescription:
+        "Reformed Theologian focusing on apologetics, debates, and more",
+      color: "#00679A",
+      favorite: true,
+      fullscreen: true,
+      dropdown: false,
+      badges: ["video", "website", "apologetics", "theology"],
+      mediaType: [],
+      links: [],
+    },
+    {
+      id: "mike_winger",
+      name: "Mike Winger",
+      type: ResourceType.CREATOR,
+      shortDescription: "Think Biblically About Everything",
+      color: "#F5B100",
+      favorite: true,
+      fullscreen: true,
+      dropdown: true,
+      badges: ["video", "podcast", "apologetics", "theology"],
+      mediaType: [],
+      links: [],
+    },
+    {
+      id: "jesus_resurrection",
+      name: "The Resurrection of Jesus",
+      type: ResourceType.TOPIC,
+      shortDescription: "Did Jesus really rise from the dead?",
+      color: "#FF0000",
+      favorite: true,
+      fullscreen: true, // TODO: There should likely be some way to separate this so the actual topic page opens rather than the expanded card
+      dropdown: false,
+      badges: [
+        "topic",
+        "question",
+        "video",
+        "website",
+        "scholarly_article",
+        "article",
+        "documentary",
+        "book",
+        "apologetics",
+        "theology",
+      ],
+      mediaType: [],
+      links: [],
+    },
+    // {
+    //   id: "genesis_interpretations",
+    //   name: "The Book of Genesis",
+    //   type: ResourceType.TOPIC,
+    //   shortDescription:
+    //     "The Book of Genesis describes how God created the universe, the Earth, and mankind. There are many interpretations of exactly how this happened!",
+    //   color: "#9C7453",
+    //   favorite: true,
+    //   fullscreen: true,
+    //   dropdown: false,
+    //   badges: [
+    //     "topic",
+    //     "question",
+    //     "video",
+    //     "scholarly_article",
+    //     "book",
+    //     "apologetics",
+    //     "theology",
+    //   ],
+    //   mediaType: [],
+    //   links: [],
+    // },
+  ],
+};
+const dashboardRowData2: DashboardRowData = {
+  id: "theology_intro",
+  name: "Introduction to Theology",
+  content: [
+    {
+      id: "gavin_ortlund",
+      name: "Truth Unites with Gavin Ortlund",
+      type: ResourceType.CREATOR,
+      shortDescription: "Promoting Gospel Assurance Through Theological Depth",
+      color: "#104B88",
+      favorite: true,
+      fullscreen: true,
+      dropdown: false,
+      badges: ["video", "podcast", "website", "apologetics", "theology"],
+      mediaType: [],
+      links: [],
+    },
+    {
+      id: "john_lennox",
+      name: "John Lennox",
+      type: ResourceType.SCHOLAR,
+      shortDescription:
+        "Northern Irish theologian known for his public debates with Atheists",
+      color: "#3C8D25",
+      favorite: false,
+      fullscreen: true,
+      dropdown: true,
+      badges: ["video", "book", "theology", "apologetics"],
+      mediaType: [],
+      links: [],
+    },
+    {
+      id: "trinity_explained",
+      name: "What is the Trinity?",
+      type: ResourceType.QUESTION,
+      shortDescription:
+        "Discusses the true nature of God, in the form of three co-equal persons in the Trinity",
+      color: "#FF6600",
+      favorite: true,
+      fullscreen: true,
+      dropdown: false,
+      badges: [
+        "topic",
+        "question",
+        "video",
+        "scholarly_article",
+        "article",
+        "documentary",
+        "book",
+        "theology",
+      ],
+      mediaType: [],
+      links: [],
+    },
+  ],
+};
+const dashboardRowData3: DashboardRowData = {
+  id: "topics_new_believers",
+  name: "Topics for New Believers",
+  content: [
+    {
+      id: "jesus_resurrection",
+      name: "The Resurrection of Jesus",
+      type: ResourceType.TOPIC,
+      shortDescription: "Did Jesus really rise from the dead?",
+      color: "#FF0000",
+      favorite: true,
+      fullscreen: true,
+      dropdown: false,
+      badges: [
+        "topic",
+        "question",
+        "video",
+        "website",
+        "scholarly_article",
+        "article",
+        "documentary",
+        "book",
+        "apologetics",
+        "theology",
+      ],
+      mediaType: [],
+      links: [],
+    },
+    {
+      id: "gospels_reliability",
+      name: "The Reliability of the Gospels",
+      type: ResourceType.TOPIC,
+      shortDescription:
+        "Discusses the reliability of the Gospel accounts according to Matthew, Mark, Luke, and John",
+      color: "#FF0000",
+      favorite: false,
+      fullscreen: true,
+      dropdown: false,
+      badges: ["topic", "video", "scholarly_article", "book", "apologetics"],
+      mediaType: [],
+      links: [],
+    },
+    {
+      id: "old_testament_explained",
+      name: "The Old Testament: Explained",
+      type: ResourceType.TOPIC,
+      shortDescription:
+        "A high-level overview of the Old Testament, beginning with Genesis",
+      color: "#9C7453",
+      favorite: false,
+      fullscreen: true,
+      dropdown: false,
+      badges: ["topic", "video", "book", "commentary"],
+      mediaType: [],
+      links: [],
+    },
+  ],
+};
+
+export const loggedOutDashboardData: DashboardData = {
+  accountStatus: AccountStatus.GUEST,
+  rows: [dashboardRowData1, dashboardRowData2, dashboardRowData3],
+};

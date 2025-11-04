@@ -3,6 +3,8 @@ import styled from "@emotion/styled";
 import { BadgeText } from "@libs/Typography";
 import { Colors } from "@libs/global";
 import type { BadgeAttributes } from "@libs/Types";
+import * as badges from "@database/badges.json";
+import React from "react";
 
 const Container = styled.div<{ backgroundColor: string; textColor: string }>`
   width: fit-content;
@@ -25,11 +27,23 @@ const Container = styled.div<{ backgroundColor: string; textColor: string }>`
   }
 `;
 
-// TODO: All badges should likely be hardcoded
-const Badge = ({ text, icon, backgroundColor, textColor }: BadgeAttributes) => {
+const Badge: React.FC<{ id: string }> = ({ id }) => {
+  const { text, icon, backgroundColor, textColor } = React.useMemo(() => {
+    const curBadge: BadgeAttributes = badges[id as keyof typeof badges];
+    if (!curBadge) {
+      throw new Error("Badge Index Failed");
+    }
+    return {
+      text: curBadge.text,
+      icon: curBadge.icon,
+      backgroundColor: curBadge.backgroundColor,
+      textColor: curBadge.textColor,
+    };
+  }, [id]);
+
   return (
     <Container backgroundColor={backgroundColor} textColor={textColor}>
-      <SmallIcon src={`src/assets/icons/badges/${icon}`} alt={icon} />
+      <SmallIcon src={`src/assets/icons/${icon}`} />
       <BadgeText>{text}</BadgeText>
     </Container>
   );

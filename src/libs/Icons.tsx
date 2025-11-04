@@ -2,7 +2,7 @@ import Tooltip from "@components/Tooltip";
 import styled from "@emotion/styled";
 import React from "react";
 
-const DefaultIcon = styled.img<{ hover?: boolean }>`
+export const DefaultIcon = styled.img<{ hover?: boolean }>`
   cursor: ${({ hover }) => (hover ? "pointer" : "default")};
   transition: all 0.2s;
   :hover {
@@ -27,18 +27,25 @@ export const LargeIcon = styled(DefaultIcon)`
   height: 20px;
 `;
 
+const Container = styled.div`
+  height: 20px;
+  position: relative;
+`;
 // TODO: The size here may need to change
-export const IconWithTooltip: React.FC<{ icon: string }> = ({ icon }) => {
+export const IconWithTooltip: React.FC<{ icon: string; text: string }> = ({
+  icon,
+  text,
+}) => {
   const [visible, setVisible] = React.useState<boolean>(false);
   return (
-    <div style={{ position: "relative" }}>
-      <Tooltip text={"Scholar"} visible={visible} />
+    <Container>
+      <Tooltip text={text} visible={visible} />
       <LargeIcon
         src={`src/assets/icons/${icon}`}
         alt={icon}
         onMouseEnter={() => setVisible(true)}
         onMouseLeave={() => setVisible(false)}
       />
-    </div>
+    </Container>
   );
 };

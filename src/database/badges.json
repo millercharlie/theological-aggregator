@@ -1,0 +1,104 @@
+{
+  "video": {
+    "text": "Video",
+    "icon": "badges/video.svg",
+    "backgroundColor": "#C42929",
+    "textColor": "#FFFFFF"
+  },
+  "apologetics": {
+    "text": "Apologetics",
+    "icon": "badges/puzzle.svg",
+    "backgroundColor": "#295AC4",
+    "textColor": "#FFFFFF"
+  },
+  "commentary": {
+    "text": "Commentary",
+    "icon": "message.svg",
+    "backgroundColor": "#7F967A",
+    "textColor": "#FFFFFF"
+  },
+  "scholarly_article": {
+    "text": "Scholarly Article",
+    "icon": "scholar.svg",
+    "backgroundColor": "#918370",
+    "textColor": "#FFFFFF"
+  },
+  "blog": {
+    "text": "Blog",
+    "icon": "___.svg",
+    "backgroundColor": "#FDB913",
+    "textColor": "#292929"
+  },
+  "article": {
+    "text": "Article",
+    "icon": "badges/article.svg",
+    "backgroundColor": "#7D7D7D",
+    "textColor": "#FFFFFF"
+  },
+  "documentary": {
+    "text": "Documentary",
+    "icon": "badges/video_camera.svg",
+    "backgroundColor": "#DEC9E2",
+    "textColor": "#292929"
+  },
+  "book": {
+    "text": "Book",
+    "icon": "badges/closed_book.svg",
+    "backgroundColor": "#F6EEE2",
+    "textColor": "#292929"
+  },
+  "theology": {
+    "text": "Theology",
+    "icon": "badges/comment.svg",
+    "backgroundColor": "#6EBCB9",
+    "textColor": "#FFFFFF"
+  },
+  "podcast": {
+    "text": "Podcast",
+    "icon": "badges/mic.svg",
+    "backgroundColor": "#E87C23",
+    "textColor": "#FFFFFF"
+  },
+  "website": {
+    "text": "Website",
+    "icon": "badges/website.svg",
+    "backgroundColor": "#2396E8",
+    "textColor": "#FFFFFF"
+  },
+  "historical_figure": {
+    "text": "Historical Figure",
+    "icon": "account_placeholder.svg",
+    "backgroundColor": "#6C5793",
+    "textColor": "#FFFFFF"
+  },
+  "church": {
+    "text": "Church",
+    "icon": "church.svg",
+    "backgroundColor": "#83D615",
+    "textColor": "#292929"
+  },
+  "philosophy": {
+    "text": "Philosophy",
+    "icon": "___.svg",
+    "backgroundColor": "#F573B4",
+    "textColor": "#292929"
+  },
+  "topic": {
+    "text": "Topic",
+    "icon": "topic.svg",
+    "backgroundColor": "#FF6600",
+    "textColor": "#FFFFFF"
+  },
+  "question": {
+    "text": "Question",
+    "icon": "question.svg",
+    "backgroundColor": "#40553B",
+    "textColor": "#FFFFFF"
+  },
+  "debate": {
+    "text": "Debate",
+    "icon": "badges/podium.svg",
+    "backgroundColor": "#4C4C4C",
+    "textColor": "#FFFFFF"
+  }
+}

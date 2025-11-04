@@ -1,10 +1,11 @@
 import Dashboard from "@pages/Dashboard";
 import "./App.css";
+import { loggedOutDashboardData } from "@database/mockData";
 
 function App() {
   return (
     <div>
-      <Dashboard />
+      <Dashboard data={loggedOutDashboardData} />
     </div>
   );
 }

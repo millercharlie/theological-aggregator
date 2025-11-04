@@ -1,24 +1,17 @@
 [
-    {
-        "name": "Mike Winger",
-        "platform": "Bible Thinker",
-        "type": "person",
-        "shortDescription": "Think Biblically About Everything",
-        "longDescription": "",
-        "imgPath": "",
-        "badges": [
-            "apologetics",
-            "theology",
-            "commentary"
-        ],
-        "mediaType": [
-            "video",
-            "podcast"
-        ],
-        "links": [
-            {"platform": "YouTube", "link": "..."},
-            {"platform": "Website", "link": "..."}
-        ],
-        "color": "#FFFFFF"
-    }
+  {
+    "name": "Mike Winger",
+    "ministry": "Bible Thinker",
+    "type": "person",
+    "shortDescription": "Think Biblically About Everything",
+    "longDescription": "",
+    "imgPath": "",
+    "badges": ["apologetics", "theology", "commentary"],
+    "mediaType": ["video", "podcast"],
+    "links": [
+      { "platform": "YouTube", "link": "..." },
+      { "platform": "Website", "link": "..." }
+    ],
+    "color": "#FFFFFF"
+  }
 ]

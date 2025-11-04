@@ -1,0 +1,26 @@
+[
+  {
+    "type": "scholar",
+    "icon": "scholar.svg"
+  },
+  {
+    "type": "creator",
+    "icon": "account_placeholder.svg"
+  },
+  {
+    "type": "ministry",
+    "icon": "church.svg"
+  },
+  {
+    "type": "book",
+    "icon": "open_book.svg"
+  },
+  {
+    "type": "topic",
+    "icon": "topic.svg"
+  },
+  {
+    "type": "question",
+    "icon": "question.svg"
+  }
+]
