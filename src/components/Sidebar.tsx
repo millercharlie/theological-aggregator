@@ -33,7 +33,7 @@ const SidebarItem = ({
 }) => (
   <div>
     <TitleWrapper>
-      <Icon src={`src/assets/icons/${icon}`} alt={icon} id={`${title}-icon`} />
+      <Icon src={`src/assets/icons/${icon}`} hover={false} />
       <Typography.Subtitle id="title-text">{title}</Typography.Subtitle>
     </TitleWrapper>
     <HorizontalRow />

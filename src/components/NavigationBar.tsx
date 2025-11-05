@@ -1,10 +1,15 @@
 import SearchBar from "@components/SearchBar";
 import styled from "@emotion/styled";
 import * as Typography from "@libs/Typography";
-import accountPlaceholderIcon from "@assets/icons/account_placeholder.svg";
-import logo from "@assets/logos/logo.svg";
-import { AccountCircle } from "@libs/Icons";
-import { Colors } from "@libs/global";
+import {
+  AccountCircle,
+  DefaultIcon as LogoImage,
+  DefaultIcon as Icon,
+} from "@libs/Icons";
+
+import { Theme, type ColorTheme } from "@libs/Types";
+import React from "react";
+import { Colors } from "@libs/globals";
 
 const links: { id: string; pretty: string; link: string }[] = [
   {
@@ -35,8 +40,8 @@ const links: { id: string; pretty: string; link: string }[] = [
 ];
 
 // TODO: The color here should be taken from the global.ts file
-const Container = styled.div`
-  background-color: rgba(79, 79, 79, 0.3);
+const Container = styled.div<{ theme: ColorTheme }>`
+  background-color: ${({ theme }) => theme.navBar};
   display: flex;
   padding-left: 30px;
   padding-right: 30px;
@@ -51,44 +56,57 @@ const NavLinksContainer = styled.div`
   gap: 30px;
 `;
 // TODO: Color here should also be dynamic
-const NavItem = styled(Typography.NavigationLink)<{ highlighted?: boolean }>`
+const NavItem = styled(Typography.NavigationLink)<{
+  highlighted?: boolean;
+  theme: ColorTheme;
+}>`
   cursor: pointer;
   text-wrap: nowrap;
   transition: all 0.2s;
-  color: ${({ highlighted }) =>
-    highlighted ? Colors.dark.navHighlight : Colors.dark.text};
+  color: ${({ highlighted, theme }) =>
+    highlighted ? theme.navHighlight : theme.text};
   :hover {
-    color: ${Colors.dark.secondary};
+    color: ${({ theme }) => theme.secondary};
   }
 `;
-const LogoImage = styled.img`
-  width: 32px;
-  color: white;
-`;
 
-const DesktopNavigationBar = ({ highlighted }: { highlighted: string }) => {
+const DesktopNavigationBar: React.FC<{
+  highlighted: string;
+  theme: ColorTheme;
+  setTheme: React.Dispatch<React.SetStateAction<ColorTheme>>;
+}> = ({ highlighted, theme, setTheme }) => {
   return (
-    <Container>
+    <Container theme={theme}>
       <NavLinksContainer>
-        <NavItem>
-          <LogoImage src={logo} alt="logo_img" />
+        <NavItem theme={theme}>
+          <LogoImage src="src/assets/logos/logo.svg" width={32} height={32} />
         </NavItem>
         {links.map((link) => (
           <NavItem
             id={link.id}
             key={link.id}
             highlighted={link.id === highlighted}
+            theme={theme}
           >
             {link.pretty}
           </NavItem>
         ))}
       </NavLinksContainer>
       <SearchBar />
-      <AccountCircle
-        src={accountPlaceholderIcon}
-        alt="account_placeholder"
+      <Icon
+        src={
+          theme.id === Theme.DARK
+            ? "src/assets/icons/sun.svg" // TODO: There may be a better way to do this rather than hardcoding the path
+            : "src/assets/icons/moon.svg"
+        }
         hover={true}
+        width={32}
+        height={32}
+        onClick={() =>
+          setTheme(Colors[theme.id === Theme.DARK ? Theme.LIGHT : Theme.DARK])
+        }
       />
+      <AccountCircle src="src/assets/icons/account_placeholder.svg" />
     </Container>
   );
 };

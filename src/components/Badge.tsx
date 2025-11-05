@@ -1,7 +1,7 @@
 import { SmallIcon } from "@libs/Icons";
 import styled from "@emotion/styled";
 import { BadgeText } from "@libs/Typography";
-import { Colors } from "@libs/global";
+import { Colors } from "@libs/globals";
 import type { BadgeAttributes } from "@libs/Types";
 import * as badges from "@database/badges.json";
 import React from "react";
@@ -41,9 +41,10 @@ const Badge: React.FC<{ id: string }> = ({ id }) => {
     };
   }, [id]);
 
+  // TODO: Badge icon should not have default cursor
   return (
     <Container backgroundColor={backgroundColor} textColor={textColor}>
-      <SmallIcon src={`src/assets/icons/${icon}`} />
+      <SmallIcon src={`src/assets/icons/${icon}`} hover={false} />
       <BadgeText>{text}</BadgeText>
     </Container>
   );

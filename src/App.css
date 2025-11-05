@@ -3,6 +3,6 @@ body {
 }
 
 body.modal-open {
-    overflow: hidden;
-    position: fixed;
+    height: 100vh;
+    overflow-y: hidden;
 }

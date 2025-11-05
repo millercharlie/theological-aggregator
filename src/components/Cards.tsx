@@ -2,26 +2,22 @@ import Badge from "@components/Badge";
 import styled from "@emotion/styled";
 
 import React from "react";
-import { DefaultIcon, IconWithTooltip, MediumIcon } from "@libs/Icons";
+import { IconWithTooltip } from "@libs/Icons";
 import * as Typography from "@libs/Typography";
 import resourceIcons from "@database/resourceIcons.json";
 import { hexToRGB } from "@libs/functions";
 
-import expandArrows from "@assets/arrows/expand_arrows.svg";
-import dropdownArrow from "@assets/arrows/up_down_arrow.svg";
-
-import { Colors } from "@libs/global";
-import type { ResourceInfo, ResourceType } from "@libs/Types";
-
-import favoritedStar from "@assets/icons/favorited.svg";
-import defaultStar from "@assets/icons/star.svg";
+import type { ColorTheme, ResourceInfo, ResourceType } from "@libs/Types";
 import { HorizontalRow } from "@components/HorizontalRow";
+import ControlButtons from "@components/ControlButtons";
+import { colorMap } from "@database/colorMap";
+import { ThemeContext } from "@libs/Context";
 
-const Container = styled.div<{ backgroundColor?: string }>`
+const Container = styled.div<{ backgroundColor?: string; theme: ColorTheme }>`
   /* width: 300px; */
   height: fit-content;
-  padding: 6px;
-  outline: 3px solid ${Colors.dark.text};
+  padding: 10px;
+  outline: 3px solid ${({ theme }) => theme.text};
   border-radius: 10px;
   background-color: ${({ backgroundColor }) => backgroundColor ?? "#717171"};
   backdrop-filter: blur(40%);
@@ -52,36 +48,6 @@ const BadgeRow = styled.div`
   gap: 9px;
 `;
 
-const ControlButtons = styled.div`
-  height: fit-content;
-  display: grid;
-  place-items: center;
-  grid-template-rows: repeat(3, 1fr);
-  gap: 6px;
-  z-index: 2;
-`;
-const ActionButton = styled(MediumIcon)<{ active?: boolean }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 4px;
-  background-color: rgba(256, 256, 256, 0.5);
-  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.25));
-  border-radius: 50%;
-  cursor: pointer;
-  transform: ${({ active }) => (active ? "rotate(180deg)" : undefined)};
-  :hover {
-    transform: ${({ active }) => (active ? "rotate(180deg)" : undefined)}
-      scale(110%);
-  }
-`;
-const FavoritedStar = styled(DefaultIcon)`
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.25));
-`;
-
 const ThumbnailContainer = styled.div`
   width: 100%;
   display: flex;
@@ -94,6 +60,11 @@ const ThumbnailImage = styled.img`
   border-radius: 3px;
   cursor: pointer;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+
+  transition: all 0.2s;
+  :hover {
+    transform: scale(105%) rotate(-5deg);
+  }
 `;
 
 // TODO: `fullscreen` and `dropdown` variables might need to be more descriptive lol
@@ -112,12 +83,11 @@ export const Card: React.FC<{
   >;
 }> = ({ resource, setSelectedResource }) => {
   const [dropdownActive, setDropdownActive] = React.useState<boolean>(false);
-  const [fullscreenActive, setFullscreenActive] =
-    React.useState<boolean>(false);
 
+  const { theme } = React.useContext(ThemeContext);
   const translucentBackgroundColor = React.useMemo(() => {
-    const rgbColor = hexToRGB(resource.color ?? "#717171");
-    return `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.70)`;
+    const rgbColor = hexToRGB(colorMap[resource.type]);
+    return `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.2)`;
   }, [resource]);
   const icon = React.useMemo(() => {
     const curIcon = resourceIcons.find(
@@ -130,7 +100,11 @@ export const Card: React.FC<{
 
   // TODO: The fullscreen modal here may be better in the dashboard for performance reasons
   return (
-    <Container id={resource.id} backgroundColor={translucentBackgroundColor}>
+    <Container
+      id={resource.id}
+      backgroundColor={translucentBackgroundColor}
+      theme={theme}
+    >
       <VisibleContent>
         <MainContent>
           <TitleRow>
@@ -152,30 +126,15 @@ export const Card: React.FC<{
             ))}
           </BadgeRow>
         </MainContent>
-        <ControlButtons>
-          <FavoritedStar
-            src={resource.favorite ? favoritedStar : defaultStar}
-            hover={true}
-          />
-          {resource.fullscreen && (
-            <ActionButton
-              id="fs-btn"
-              src={expandArrows}
-              alt="expand"
-              hover={true}
-              onClick={() => setSelectedResource(resource)}
-            />
-          )}
-          {resource.dropdown && (
-            <ActionButton
-              id="dd-btn"
-              src={dropdownArrow}
-              alt="expand"
-              onClick={() => setDropdownActive(!dropdownActive)}
-              active={dropdownActive}
-            />
-          )}
-        </ControlButtons>
+        <ControlButtons
+          resource={resource}
+          favorite={resource.favorite}
+          dropdown={resource.dropdown}
+          fullscreen={resource.fullscreen}
+          setSelectedResource={setSelectedResource}
+          dropdownActive={dropdownActive}
+          setDropdownActive={setDropdownActive}
+        />
       </VisibleContent>
       {dropdownActive && resource.recentContent && (
         <div id="expanded-content">

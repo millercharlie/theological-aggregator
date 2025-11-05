@@ -5,7 +5,7 @@ import squarrow from "@assets/arrows/squarrow.svg";
 
 import { MediumIcon as Icon } from "@libs/Icons";
 import React from "react";
-import { Colors } from "@libs/global";
+import { Colors } from "@libs/globals";
 
 const Container = styled.li<{ link?: boolean }>`
   padding-bottom: 5px;
@@ -48,7 +48,7 @@ const Link: React.FC<{ item: ResourceLink }> = ({ item }) => {
           : item.displayText}
       </Typography.SidebarLink>
       {item.link !== undefined && item.link !== null && item.link !== "" && (
-        <Icon src={squarrow} alt="squarrow" hover={true} />
+        <Icon src={squarrow} />
       )}
     </Container>
   );

@@ -9,3 +9,4 @@ export const hexToRGB = (hex: string) => {
     b: parseInt(conversion[3], 16),
   };
 };
+export const noOp = () => {};

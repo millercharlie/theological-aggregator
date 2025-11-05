@@ -6,13 +6,22 @@ import NavigationBar from "@components/NavigationBar";
 import Sidebar from "@components/Sidebar";
 
 import { Card } from "@components/Cards";
-import type { DashboardData, ResourceInfo } from "@libs/Types";
-import * as theme from "@libs/global";
-import React from "react";
+import {
+  Theme,
+  type ColorTheme,
+  type DashboardData,
+  type ResourceInfo,
+} from "@libs/Types";
+import * as theme from "@libs/globals";
+import React, { useContext } from "react";
 import ResourceModal from "@components/modals/ResourceModal";
+import { ThemeContext } from "@libs/Context";
+import { Colors } from "@libs/globals";
+import { DefaultIcon } from "@libs/Icons";
 
-const Background = styled.div`
-  background-color: black;
+const Background = styled.div<{ theme: ColorTheme }>`
+  background-color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.text};
   width: 100%;
   height: 100%;
   background-image: url("src/assets/background_gradient.svg"); // TODO: Eventually, this should be calculated dynamically
@@ -51,11 +60,8 @@ const Content = styled.div`
 const MainContent = styled.div`
   margin-top: 30px;
 `;
-// TODO: Color is not working here
-const Logogram = styled.img`
+const Logogram = styled(DefaultIcon)`
   width: 300px;
-  color: #ffffff;
-  fill: #ffffff;
 `;
 const TitleContainer = styled.div`
   display: flex;
@@ -88,18 +94,31 @@ const CardRow = styled.div`
 const Dashboard: React.FC<{ data: DashboardData }> = ({ data }) => {
   const [selectedResource, setSelectedResource] =
     React.useState<ResourceInfo | null>(null);
+  const [theme, setTheme] = React.useState(Colors[Theme.DARK]);
+
   return (
-    <Background>
-      <NavigationBar highlighted="dashboard" />
-      <ContentBackground>
-        <Content>
-          <Heading>
-            <TitleContainer>
-              <Typography.Description>Welcome to</Typography.Description>
-              <Logogram src={logogram} alt="logogram" />
-            </TitleContainer>
-            <div id="description">
-              <Typography.LargeParagraph>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <Background theme={theme}>
+        <NavigationBar
+          highlighted="dashboard"
+          theme={theme}
+          setTheme={setTheme}
+        />
+        <ContentBackground>
+          <Content>
+            <Heading>
+              <TitleContainer>
+                <Typography.RowHeading style={{ marginBottom: -20 }}>
+                  Welcome to
+                </Typography.RowHeading>
+                <Logogram
+                  src={logogram}
+                  width={300}
+                  height={130}
+                  hover={false}
+                />
+              </TitleContainer>
+              <Typography.LargeParagraph id="description">
                 Solomon is a convenient platform with resources on apologetics,
                 theology, and Bible commentaries. We hope you can use this
                 platform to discover new resources, engage with theologians, and
@@ -115,46 +134,47 @@ const Dashboard: React.FC<{ data: DashboardData }> = ({ data }) => {
                 recommendations, favorites) be sure to create an account with
                 us!
               </Typography.LargeParagraph>
-            </div>
-          </Heading>
-          <MainContent>
-            {data.rows.map((row, i) => (
-              <Row key={i}>
-                <Typography.RowHeading>{row.name}</Typography.RowHeading>
-                <CardRow id={row.id}>
-                  {row.content.map(
-                    (
-                      item, // TODO: This needs to be more dynamic - only the cards can fit on the page should be displayed
-                      j
-                    ) => (
-                      <Card
-                        resource={item}
-                        key={j}
-                        setSelectedResource={setSelectedResource}
-                      />
-                    )
-                  )}
-                </CardRow>
-              </Row>
-            ))}
-          </MainContent>
-        </Content>
-        <Sidebar contents={sidebarData} />
-      </ContentBackground>
-      {/*
+            </Heading>
+            <MainContent>
+              {data.rows.map((row, i) => (
+                <Row key={i}>
+                  <Typography.RowHeading>{row.name}</Typography.RowHeading>
+                  <CardRow id={row.id}>
+                    {row.content.map(
+                      (
+                        item, // TODO: This needs to be more dynamic - only the cards can fit on the page should be displayed
+                        j
+                      ) => (
+                        <Card
+                          resource={item}
+                          key={j}
+                          setSelectedResource={setSelectedResource}
+                        />
+                      )
+                    )}
+                  </CardRow>
+                </Row>
+              ))}
+            </MainContent>
+          </Content>
+          <Sidebar contents={sidebarData} />
+        </ContentBackground>
+        {/*
       <BackgroundGradient
         src={backgroundGradient}
         alt="background-gradient"
         draggable="false"
       />
       */}
-      {selectedResource !== null && (
-        <ResourceModal
-          visible={selectedResource !== null}
-          resource={selectedResource!}
-        />
-      )}
-    </Background>
+        {selectedResource !== null && (
+          <ResourceModal
+            visible={selectedResource !== null}
+            resource={selectedResource!}
+            setSelectedResource={setSelectedResource}
+          />
+        )}
+      </Background>
+    </ThemeContext.Provider>
   );
 };
 

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Colors } from "@libs/global";
+import { Colors } from "@libs/globals";
 import { TooltipText } from "@libs/Typography";
 
 const Container = styled.div<{ visible: boolean }>`

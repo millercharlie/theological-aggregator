@@ -42,6 +42,20 @@ export type ResourceIcon = {
   icon: string;
 };
 
+export enum Theme {
+  LIGHT = "light",
+  DARK = "dark",
+}
+
+export type ColorTheme = {
+  id: Theme;
+  primary: string;
+  secondary: string;
+  text: string;
+  navBar: string;
+  navHighlight: string;
+};
+
 /**
  * Resource link which includes a platform and the actual link.
  */
@@ -72,7 +86,6 @@ export type ResourceInfo = {
   shortDescription: string;
   longDescription?: string;
   recentContent?: Content[];
-  color?: string;
   favorite: boolean;
   fullscreen?: boolean;
   dropdown?: boolean;

@@ -1,6 +1,9 @@
+import ControlButtons from "@components/ControlButtons";
 import Link from "@components/Link";
 import Modal from "@components/modals/Modal";
+import { colorMap } from "@database/colorMap";
 import styled from "@emotion/styled";
+import { noOp } from "@libs/functions";
 import type { ResourceInfo } from "@libs/Types";
 import * as Typography from "@libs/Typography";
 
@@ -12,12 +15,14 @@ const ResourceContent = styled.div`
 
 const ResourceModal: React.FC<{
   resource: ResourceInfo;
+  setSelectedResource: React.Dispatch<
+    React.SetStateAction<ResourceInfo | null>
+  >;
   visible: boolean;
   setVisible?: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ resource, visible, setVisible }) => {
-  // TODO: `setVisible` is potentially not needed
+}> = ({ resource, setSelectedResource, visible }) => {
   return (
-    <Modal visible={visible} backgroundColor={resource.color}>
+    <Modal visible={visible} backgroundColor={colorMap[resource.type]}>
       <Typography.Title>{resource.name}</Typography.Title>
       <Typography.Description fontSize="32px" italic={true}>
         {resource.shortDescription}
@@ -39,6 +44,14 @@ const ResourceModal: React.FC<{
           </div>
         )}
       </ResourceContent>
+      <ControlButtons
+        resource={resource}
+        favorite={resource.favorite}
+        setSelectedResource={setSelectedResource}
+        fullscreen={resource.fullscreen} // TODO: The icon should change here assuming fullscreen mode is active
+        dropdownActive={false}
+        setDropdownActive={noOp}
+      />
     </Modal>
   );
 };
