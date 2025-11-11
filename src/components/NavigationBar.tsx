@@ -100,8 +100,8 @@ const DesktopNavigationBar: React.FC<{
             : "src/assets/icons/moon.svg"
         }
         hover={true}
-        width={32}
-        height={32}
+        width={24}
+        height={24}
         onClick={() =>
           setTheme(Colors[theme.id === Theme.DARK ? Theme.LIGHT : Theme.DARK])
         }

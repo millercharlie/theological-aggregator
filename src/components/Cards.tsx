@@ -12,6 +12,7 @@ import { HorizontalRow } from "@components/HorizontalRow";
 import ControlButtons from "@components/ControlButtons";
 import { colorMap } from "@database/colorMap";
 import { ThemeContext } from "@libs/Context";
+import Thumbnail from "@components/Thumbnail";
 
 const Container = styled.div<{ backgroundColor?: string; theme: ColorTheme }>`
   /* width: 300px; */
@@ -48,33 +49,15 @@ const BadgeRow = styled.div`
   gap: 9px;
 `;
 
-const ThumbnailContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-const ThumbnailImage = styled.img`
-  width: 100px;
-  height: auto;
-  border-radius: 3px;
-  cursor: pointer;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-
-  transition: all 0.2s;
-  :hover {
-    transform: scale(105%) rotate(-5deg);
-  }
-`;
-
 // TODO: `fullscreen` and `dropdown` variables might need to be more descriptive lol
 // TODO: This also doesnt' account for mobile devices
 // TODO: Likely add a `setFavorite()` state function
 /**
  * Represents a Card, to be displayed on the Dashboard and various other pages. This card handles its
  * own state when the dropdown or fullscreen versions are activated by the user.
- * @param param0
- * @returns
+ * @param resource Resource information
+ * @param setSelectedResource sets the current resource that is displayed in the fullscreen modal
+ * @returns Card component that can be expanded if clicked
  */
 export const Card: React.FC<{
   resource: ResourceInfo;
@@ -98,7 +81,6 @@ export const Card: React.FC<{
     } else return curIcon.icon;
   }, [resource.type]);
 
-  // TODO: The fullscreen modal here may be better in the dashboard for performance reasons
   return (
     <Container
       id={resource.id}
@@ -145,21 +127,15 @@ export const Card: React.FC<{
               index
             ) => (
               <>
-                <ThumbnailContainer>
-                  <div id="title/description">
-                    <Typography.ThumbnailTitle>
-                      {contentItem.title}
-                    </Typography.ThumbnailTitle>
-                    <Badge id={contentItem.badge} />
-                  </div>
-                  <ThumbnailImage
-                    src={`src/assets/mocks/${contentItem.thumbnail}`}
-                    alt="thumbnail"
-                  />
-                  {/* TODO: Mock directory is temporary! */}
-                </ThumbnailContainer>
+                <Thumbnail
+                  title={contentItem.title}
+                  image={contentItem.thumbnail}
+                  link={""}
+                  description={contentItem.description}
+                  badges={contentItem.badges}
+                />
                 {index < resource.recentContent!.length - 1 && (
-                  <HorizontalRow color="#A9A9A9" />
+                  <HorizontalRow color={theme.secondaryRow} />
                 )}
               </>
             )

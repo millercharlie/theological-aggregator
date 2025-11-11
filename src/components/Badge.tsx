@@ -26,6 +26,10 @@ const Container = styled.div<{ backgroundColor: string; textColor: string }>`
     transform: scale(105%);
   }
 `;
+const Icon = styled(SmallIcon)`
+  color: ${Colors.dark.text};
+  cursor: pointer;
+`;
 
 const Badge: React.FC<{ id: string }> = ({ id }) => {
   const { text, icon, backgroundColor, textColor } = React.useMemo(() => {
@@ -44,7 +48,7 @@ const Badge: React.FC<{ id: string }> = ({ id }) => {
   // TODO: Badge icon should not have default cursor
   return (
     <Container backgroundColor={backgroundColor} textColor={textColor}>
-      <SmallIcon src={`src/assets/icons/${icon}`} hover={false} />
+      <Icon src={`src/assets/icons/${icon}`} hover={false} />
       <BadgeText>{text}</BadgeText>
     </Container>
   );

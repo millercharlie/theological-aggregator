@@ -184,8 +184,7 @@ const dashboardRowData1: DashboardRowData = {
       type: ResourceType.SCHOLAR,
       shortDescription:
         "Reformed Theologian focusing on apologetics, debates, and more",
-      color: "#00679A",
-      favorite: true,
+      favorite: false,
       fullscreen: true,
       dropdown: false,
       badges: ["video", "website", "apologetics", "theology"],
@@ -197,8 +196,7 @@ const dashboardRowData1: DashboardRowData = {
       name: "Mike Winger",
       type: ResourceType.CREATOR,
       shortDescription: "Think Biblically About Everything",
-      color: "#F5B100",
-      favorite: true,
+      favorite: false,
       fullscreen: true,
       dropdown: true,
       badges: ["video", "podcast", "apologetics", "theology"],
@@ -210,7 +208,6 @@ const dashboardRowData1: DashboardRowData = {
       name: "The Resurrection of Jesus",
       type: ResourceType.TOPIC,
       shortDescription: "Did Jesus really rise from the dead?",
-      color: "#FF0000",
       favorite: true,
       fullscreen: true, // TODO: There should likely be some way to separate this so the actual topic page opens rather than the expanded card
       dropdown: false,
@@ -265,7 +262,6 @@ const dashboardRowData2: DashboardRowData = {
         "\u201CPromoting Gospel Assurance Through Theological Depth\u201D",
       longDescription:
         "Gavin Ortlund (PhD, Fuller Theological Seminary) is President of Truth Unites, Visiting Professor of Historical Theology at Phoenix Seminary, and Theologian-in-Residence at Immanuel Nashville. He is also an Evangelical theologian and content creator focusing on Christian doctrine, with a particular emphasis on the historical church.\n\nHis content includes refuting particular doctrines, such as the Papacy, responding to other theologions such as C.S. Lewis and Trent Horn, and defending Evangelical and Protestant beliefs, such as Sola Scriptura. All of his content is available for free on YouTube and other podcast sites, and he also sells books online",
-      color: "#104B88",
       favorite: true,
       fullscreen: true,
       dropdown: true,
@@ -273,23 +269,58 @@ const dashboardRowData2: DashboardRowData = {
         {
           id: "go_v1",
           title: "Did Jesus Descend into Hell?",
-          description: "...",
+          description:
+            "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
           thumbnail: "go_v1.png",
-          badge: "question",
+          badges: ["question"],
+          link: "",
         },
         {
           id: "go_v2",
           title: "Should Christians use Profanity?",
-          description: "...",
+          description:
+            "In this video, Gavin Ortlund explores what it means that Jesus ‘descended to hell’.",
           thumbnail: "go_v2.png",
-          badge: "question",
+          badges: ["question"],
+          link: "",
         },
         {
           id: "go_v3",
           title: "Craig and Ortlund Clash on the Eucharist",
-          description: "...",
+          description:
+            "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
           thumbnail: "go_v3.png",
-          badge: "theology",
+          badges: ["theology"],
+          link: "",
+        },
+      ],
+      recommendedContent: [
+        {
+          id: "go_v2",
+          title: "Should Christians use Profanity?",
+          description:
+            "In this video, Gavin Ortlund explores what it means that Jesus ‘descended to hell’.",
+          thumbnail: "go_v2.png",
+          badges: ["question"],
+          link: "",
+        },
+        {
+          id: "go_v1",
+          title: "Did Jesus Descend into Hell?",
+          description:
+            "In this video, Gavin Ortlund and William Lane Craig discuss their differing views of the eucharist.",
+          thumbnail: "go_v1.png",
+          badges: ["question"],
+          link: "",
+        },
+        {
+          id: "go_v3",
+          title: "Craig and Ortlund Clash on the Eucharist",
+          description:
+            "In this video, Gavin Ortlund and Joe Rigney discuss whether Christians should use profanity.",
+          thumbnail: "go_v3.png",
+          badges: ["theology"],
+          link: "",
         },
       ],
       badges: ["video", "podcast", "website", "apologetics", "theology"],
@@ -364,7 +395,6 @@ const dashboardRowData2: DashboardRowData = {
       type: ResourceType.SCHOLAR,
       shortDescription:
         "Northern Irish theologian known for his public debates with Atheists",
-      color: "#3C8D25",
       favorite: false,
       fullscreen: true,
       dropdown: true,
@@ -378,7 +408,6 @@ const dashboardRowData2: DashboardRowData = {
       type: ResourceType.QUESTION,
       shortDescription:
         "Discusses the true nature of God, in the form of three co-equal persons in the Trinity",
-      color: "#FF6600",
       favorite: true,
       fullscreen: true,
       dropdown: false,
@@ -406,7 +435,6 @@ const dashboardRowData3: DashboardRowData = {
       name: "The Resurrection of Jesus",
       type: ResourceType.TOPIC,
       shortDescription: "Did Jesus really rise from the dead?",
-      color: "#FF0000",
       favorite: true,
       fullscreen: true,
       dropdown: false,
@@ -431,7 +459,6 @@ const dashboardRowData3: DashboardRowData = {
       type: ResourceType.TOPIC,
       shortDescription:
         "Discusses the reliability of the Gospel accounts according to Matthew, Mark, Luke, and John",
-      color: "#FF0000",
       favorite: false,
       fullscreen: true,
       dropdown: false,
@@ -445,7 +472,6 @@ const dashboardRowData3: DashboardRowData = {
       type: ResourceType.TOPIC,
       shortDescription:
         "A high-level overview of the Old Testament, beginning with Genesis",
-      color: "#9C7453",
       favorite: false,
       fullscreen: true,
       dropdown: false,

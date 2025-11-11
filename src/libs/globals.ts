@@ -8,6 +8,8 @@ export const Colors: Record<Theme, ColorTheme> = {
     text: `#252525`,
     navBar: `rgba(222, 222, 222, 0.30);`,
     navHighlight: `#119C26`,
+    primaryRow: "#252525",
+    secondaryRow: "#434343",
   },
   [Theme.DARK]: {
     id: Theme.DARK,
@@ -16,6 +18,8 @@ export const Colors: Record<Theme, ColorTheme> = {
     text: `#FFFFFF`,
     navBar: `rgba(79, 79, 79, 0.30);`,
     navHighlight: `#2AD143`,
+    primaryRow: "#FFFFFF",
+    secondaryRow: "#A9A9A9",
   },
 };
 

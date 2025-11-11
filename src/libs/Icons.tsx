@@ -11,7 +11,7 @@ import React, { useContext, type MouseEventHandler } from "react";
 //   }
 // `;
 
-const StyledSVG = styled.svg<{ hover?: boolean }>`
+export const StyledSVG = styled.svg<{ hover?: boolean }>`
   flex-shrink: 0;
   transition: all 0.2s;
   cursor: ${({ hover }) => (hover ? `pointer` : `default`)};
@@ -41,10 +41,6 @@ export const DefaultIcon: React.FC<{
 }) => {
   const { theme } = useContext(ThemeContext);
 
-  React.useEffect(() => {
-    console.log(theme.text);
-  }, [theme]);
-
   return (
     <StyledSVG
       className={className}
@@ -56,12 +52,7 @@ export const DefaultIcon: React.FC<{
       onClick={onClick}
       hover={hover}
     >
-      <use
-        xlinkHref={src}
-        href={src}
-        width={width ?? 11}
-        height={height ?? 11}
-      />
+      <use xlinkHref={src} href={src} width={width} height={height ?? 11} />
     </StyledSVG>
   );
 };
@@ -92,7 +83,7 @@ export const SmallIcon: React.FC<{
   <DefaultIcon
     src={src}
     height={8}
-    width={8}
+    width={11} // TODO: This is basically the same as the Medium Icon
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
     onClick={onClick}
@@ -138,13 +129,32 @@ export const LargeIcon: React.FC<{
     className={className}
   />
 );
+export const LargestIcon: React.FC<{
+  src: string;
+  onMouseEnter?: MouseEventHandler<SVGSVGElement>;
+  onMouseLeave?: MouseEventHandler<SVGSVGElement>;
+  onClick?: () => void;
+  hover?: boolean;
+  className?: string;
+}> = ({ src, onMouseEnter, onMouseLeave, onClick, hover, className }) => (
+  <DefaultIcon
+    src={src}
+    height={35}
+    width={35}
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+    onClick={onClick}
+    hover={hover}
+    className={className}
+  />
+);
 
 // export const SmallIcon = styled(DefaultIcon)`
 //   height: 8px;
 //   width: auto;
 // `;
 // export const MediumIcon = styled(DefaultIcon)`
-//   height: 11px; // TODO: Should this be by width?
+//   height: 11px;
 //   width: auto;
 // `;
 // export const LargeIcon = styled(DefaultIcon)`

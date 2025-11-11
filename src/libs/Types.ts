@@ -54,6 +54,13 @@ export type ColorTheme = {
   text: string;
   navBar: string;
   navHighlight: string;
+  primaryRow: string;
+  secondaryRow: string;
+};
+
+// TODO: Finish this map
+export const BadgeMap: Record<string, string> = {
+  video: "video",
 };
 
 /**
@@ -72,7 +79,8 @@ type Content = {
   title: string;
   description?: string;
   thumbnail: string;
-  badge: string; // TODO: Maybe make badge type an enum or interface
+  badges: string[]; // TODO: Maybe make badge type an enum or interface
+  link: string;
 };
 
 /**
@@ -86,6 +94,7 @@ export type ResourceInfo = {
   shortDescription: string;
   longDescription?: string;
   recentContent?: Content[];
+  recommendedContent?: Content[]; // TODO: This will change as more functionality is added (eg: user recommendations)
   favorite: boolean;
   fullscreen?: boolean;
   dropdown?: boolean;

@@ -95,6 +95,7 @@ export const DropdownTitle = styled.p`
   font-weight: normal;
   font-variant: all-small-caps;
   font-style: italic;
+  margin-bottom: 0;
 `;
 /**
  * Styles of every thumbnail (recent content) title.
@@ -106,4 +107,11 @@ export const ThumbnailTitle = styled.p`
   font-style: normal;
   font-variant: all-small-caps;
   line-height: 1;
+`;
+export const LargeThumbnailTitle = styled.p`
+  font-family: "fira-sans", "apparat-semicond", "avenir", sans-serif;
+  font-size: 12pt;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.3;
 `;

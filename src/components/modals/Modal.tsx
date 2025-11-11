@@ -4,8 +4,10 @@ import { Colors } from "@libs/globals";
 import type { ReactNode } from "react";
 import React from "react";
 import { breakpoints } from "@libs/globals";
+import type { ColorTheme } from "@libs/Types";
+import { ThemeContext } from "@libs/Context";
 
-const Background = styled.div<{ visible: boolean }>`
+const Background = styled.div<{ visible: boolean; theme: ColorTheme }>`
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -16,13 +18,19 @@ const Background = styled.div<{ visible: boolean }>`
   left: 50%;
   transform: translate(-50%, -50%);
   display: ${({ visible }) => (visible ? "block" : "none")};
-  backdrop-filter: blur(25px);
-  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(40px);
+  background-color: rgba
+    ${({ theme }) =>
+      `${hexToRGB(theme.text).r}, ${hexToRGB(theme.text).g}, ${
+        hexToRGB(theme.text).b
+      }, 0.8`};
   z-index: 5;
 `;
 const Container = styled.div<{ backgroundColor: string }>`
   width: 80%;
   min-height: 70%;
+  max-height: 85%;
+  overflow-y: scroll;
   height: fit-content;
   position: absolute;
   top: 50%;
@@ -35,10 +43,12 @@ const Container = styled.div<{ backgroundColor: string }>`
   padding: 30px;
 
   // TODO: This is not working lol
-  @media only screen and (max-width: ${breakpoints.sm}px) {
-    width: 100vw;
-    height: 100vh;
+  @media (max-width: 900px) {
+    width: 100%;
+    max-height: 100%;
+    height: 100%;
     outline: none;
+    padding: 30px;
   }
 `;
 
@@ -55,6 +65,7 @@ const Modal: React.FC<{
   visible: boolean;
   backgroundColor?: string;
 }> = ({ children, visible, backgroundColor }) => {
+  const { theme } = React.useContext(ThemeContext);
   const translucentBackgroundColor = React.useMemo(() => {
     const rgbColor = hexToRGB(backgroundColor ?? "#717171");
     return `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.20)`;
@@ -69,7 +80,7 @@ const Modal: React.FC<{
   }, [visible]);
 
   return (
-    <Background visible={visible}>
+    <Background visible={visible} theme={theme}>
       <Container backgroundColor={translucentBackgroundColor}>
         {children}
       </Container>
